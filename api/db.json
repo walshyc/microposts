@@ -9,11 +9,6 @@
       "id": 2,
       "title": "Post Two",
       "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, soluta at blanditiis nostrum error labore impedit est accusamus obcaecati ipsa nam consectetur molestias et delectus, nobis odio corporis, placeat saepe."
-    },
-    {
-      "title": "Post 3",
-      "body": "Recusandae, soluta at blanditiis nostrum error labore impedit est accusamus obcaecati ipsa nam consectetur molestias et delectus, nobis odio corporis, placeat saepe.",
-      "id": 3
     }
   ]
 }
