@@ -15,12 +15,8 @@ class UI {
             output += `
             <div class="card mb-3">
                 <div class="card-body">
-                    <h4 class="card-title">
-                    ${post.title}
-                    </h4>
-                    <p class="card-text">
-                    ${post.body}
-                    </p>
+                    <h4 class="card-title">${post.title}</h4>
+                    <p class="card-text">${post.body}</p>
                     <a href="#" class="edit card-link" data-id="${post.id}"><i class="fas fa-pencil-alt"></i></a>
                     <a href="#" class="delete card-link" data-id="${post.id}"><i style="color:black" class="far fa-trash-alt"></i></a>
                 </div>
@@ -42,7 +38,7 @@ class UI {
 
         container.insertBefore(div, posts)
 
-        setTimeout(()=> {
+        setTimeout(() => {
             this.clearAlert()
         }, 3000)
     }
@@ -50,7 +46,7 @@ class UI {
     clearAlert() {
         const currentAlert = document.querySelector('.alert')
 
-        if (currentAlert){
+        if (currentAlert) {
             currentAlert.remove()
         }
     }
@@ -58,6 +54,46 @@ class UI {
     clearFields() {
         this.titleInput.value = ''
         this.bodyInput.value = ''
+    }
+
+    fillForm(data) {
+        this.titleInput.value = data.title
+        this.bodyInput.value = data.body
+        this.idInput.value = data.id
+
+        this.changeFormState('edit')
+    }
+    clearIdInput() {
+        this.idInput.value = ''
+    }
+
+    changeFormState(type) {
+        if (type === 'edit') {
+            this.postSubmit.textContent = 'Update Post'
+            this.postSubmit.className = 'post-submit btn btn-block btn-warning text-dark'
+
+            const button = document.createElement('button')
+            button.className = 'btn btn-block post-cancel btn-light'
+            button.appendChild(document.createTextNode('Cancel Edit'))
+
+            const cardForm = document.querySelector('.card-form')
+            const span = document.querySelector('.form-end')
+
+            cardForm.insertBefore(button, span)
+
+        } else {
+            this.postSubmit.textContent = 'Post It'
+            this.postSubmit.className = 'post-submit btn btn-dark btn-block'
+
+            // Remove cancel button if showing
+            if (document.querySelector('.post-cancel')) {
+                document.querySelector('.post-cancel').remove()
+            }
+
+            // Clear ID from hidden field
+            this.clearIdInput()
+            this.clearFields()
+        }
     }
 }
 
